@@ -1,3 +1,6 @@
+from typing import Any, Dict
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -22,6 +25,13 @@ class ListaTareas(LoginRequiredMixin, ListView):
     context_object_name = "tareas"
     template_name = 'TodoApp/lista_tareas.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tareas'] = context['tareas'].filter(usuario=self.request.user)
+        context['count'] = context['tareas'].filter(completado=False).count()
+        return context
+    
+
 
 class DetallesTarea(LoginRequiredMixin, DetailView):
     model = Tarea
@@ -31,13 +41,16 @@ class DetallesTarea(LoginRequiredMixin, DetailView):
 
 class CrearTarea(LoginRequiredMixin, CreateView):
     model = Tarea
-    fields = '__all__'
+    fields = ["titulo", "descripcion", "completado"]
     success_url = reverse_lazy("tareas")
+
+    def form_valid(self, form):
+        return super(self, CrearTarea).form_valid(form)
 
 
 class EditarTarea(LoginRequiredMixin, UpdateView):
     model = Tarea
-    fields = '__all__'
+    fields = ["titulo", "descripcion", "completado"]
     success_url = reverse_lazy("tareas")
 
 
