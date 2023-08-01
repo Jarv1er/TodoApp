@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Eliminar Tarea</title>
 </head>
 <body>
-    <h1>Formulario de Tarea</h1>
     <a href="{% url 'tareas' %}">Volver</a>
-
     <form action="" method="POST">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Crear">
+        <p>¿Estas seguro de eliminar la Tarea? "{{ tareas }}"</p>
+        <input type="submit" value="Eliminar">
     </form>
 </body>
 </html>

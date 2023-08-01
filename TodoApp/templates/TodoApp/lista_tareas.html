@@ -12,11 +12,14 @@
         <tr>
             <th>Elementos</th>
             <th></th>
+            <th></th>
         </tr>
         {% for tarea in tareas %}
         <tr>
             <td>{{ tarea.titulo }}</td>
-            <td><a href="{% url 'tarea' tarea.id %}">Ver Tarea</a></td>
+            <td><a href="{% url 'tarea' tarea.id %}">Tarea</a></td>
+            <td><a href="{% url 'editar-tarea' tarea.id %}">Editar</a></td>
+            <td><a href="{% url 'eliminar-tarea' tarea.id %}">Eliminar</a></td>
         </tr>
         {% empty %}
         <h3>No hay elementos en la lista</h3>
