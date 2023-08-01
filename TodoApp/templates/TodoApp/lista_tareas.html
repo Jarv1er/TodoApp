@@ -15,6 +15,12 @@
     <hr>
     <h1>Lista de Tareas</h1>
     <a href="{% url 'crear-tarea' %}">Nueva Tarea</a>
+
+    <form action="" method="GET">
+        <input type="text" name="buscador" value="">
+        <input type="submit" value="Buscar">
+    </form> 
+
     <table>
         <tr>
             <th>Elementos</th>
