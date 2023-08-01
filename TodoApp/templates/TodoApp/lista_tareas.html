@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'TodoApp/base.html' %}
+
+{% block content %}
+
     {% if request.user.is_authenticated %}
         <p>{{ request.user }}</p>
         <a href="{% url 'logout' %}">Cerrar Sesion</a>
@@ -32,11 +28,10 @@
             <td>{{ tarea.titulo }}</td>
             <td><a href="{% url 'tarea' tarea.id %}">Tarea</a></td>
             <td><a href="{% url 'editar-tarea' tarea.id %}">Editar</a></td>
-            <td><a href="{% url 'eliminar-tarea' tarea.id %}">Eliminar</a></td>
         </tr>
         {% empty %}
         <h3>No hay elementos en la lista</h3>
         {% endfor %}
     </table>
-</body>
-</html>
+
+{% endblock content %}

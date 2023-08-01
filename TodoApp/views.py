@@ -2,6 +2,7 @@ from django.forms.models import BaseModelForm
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from .models import Tarea
+
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -53,6 +54,11 @@ class ListaTareas(LoginRequiredMixin, ListView):
         context['count'] = context['tareas'].filter(completado=False).count()
 
         buscador = self.request.GET.get('buscador')
+        if buscador:
+            context['tareas'] = context['tareas'].filter(
+                titulo__istartswith=buscador)
+            
+        context['buscador'] = buscador
         return context
     
 
