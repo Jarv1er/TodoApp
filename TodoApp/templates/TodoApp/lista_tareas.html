@@ -6,6 +6,13 @@
     <title>Document</title>
 </head>
 <body>
+    {% if request.user.is_authenticated %}
+        <p>{{ request.user }}</p>
+        <a href="{% url 'logout' %}">Cerrar Sesion</a>
+    {% else %}
+        <a href="{% url 'login' %}">Iniciar Sesion</a>
+    {% endif %}
+    <hr>
     <h1>Lista de Tareas</h1>
     <a href="{% url 'crear-tarea' %}">Nueva Tarea</a>
     <table>
