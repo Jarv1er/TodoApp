@@ -1,15 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Tarea</title>
-</head>
-<body>
-    <a href="{% url 'tareas' %}">Volver</a>
+{% extends 'TodoApp/base.html' %}
+{% block title %} Lista de Tareas {% endblock %}
+
+{% block content %}
+
+<div class="header-bar">
+    <a href="{% url 'tareas' %}">&#8592; Volver</a>
+</div>
+
+<div class="card-body">
     <form action="" method="POST">{% csrf_token %}
         <p>¿Estas seguro de eliminar la Tarea? "{{ tareas }}"</p>
-        <input type="submit" value="Eliminar">
+        <input class="button" type="submit" value="Eliminar">
     </form>
-</body>
-</html>
+
+</div>
+
+{% endblock %}

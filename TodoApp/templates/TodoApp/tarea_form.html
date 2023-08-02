@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Formulario de Tarea</h1>
-    <a href="{% url 'tareas' %}">Volver</a>
+{% extends 'TodoApp/base.html' %}
+{% block title %} Formulario {% endblock %}
 
-    <form action="" method="POST">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Crear">
-    </form>
-</body>
-</html>
+{% block content %}
+
+    <div class="header-bar">
+        <a href="{% url 'tareas' %}">&#8592; Volver</a>
+    </div>
+
+    <div class="card-body">
+        <form action="" method="POST">{% csrf_token %}
+            {{ form.as_p }}
+            <input class="button" type="submit" value="Guardar Tarea">
+        </form>
+    
+    </div>
+
+{% endblock %}
